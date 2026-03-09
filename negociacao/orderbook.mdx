@@ -1,0 +1,96 @@
+---
+title: Orderbook
+description: Como funciona o livro de ordens do Oraculo — matching, liquidez e execução em tempo real.
+---
+
+## O que é um orderbook
+
+Um orderbook (livro de ordens) é um registro em tempo real de todas as ordens de compra e venda ativas em um mercado. Em vez de um criador de mercado central definir os preços, **os próprios participantes** formam a liquidez — assim como na bolsa de valores.
+
+No Oraculo, cada mercado tem um orderbook independente para os tokens SIM e NÃO.
+
+## Estrutura do orderbook
+
+```
+TOKEN SIM — Mercado: "Bitcoin > $150k até dez/2025?"
+
+VENDAS (Asks)                    COMPRAS (Bids)
+─────────────────────────────────────────────────
+Preço    Quantidade               Preço    Quantidade
+0,82     500 tokens               0,78     300 tokens
+0,80     1.200 tokens             0,76     800 tokens
+0,79     400 tokens               0,75     1.500 tokens
+                  ← spread: 0,01 →
+```
+
+- **Bids (compras)**: ordens de quem quer comprar, ordenadas do maior ao menor preço
+- **Asks (vendas)**: ordens de quem quer vender, ordenadas do menor ao maior preço
+- **Spread**: diferença entre o menor ask e o maior bid — menor spread = mais liquidez
+
+## Como o matching funciona
+
+Quando uma nova ordem chega, o **matching engine** verifica se existe uma contraparte compatível:
+
+<Steps>
+  <Step title="Ordem recebida">
+    Usuário coloca ordem de compra de 200 tokens SIM a 0,79 USDC.
+  </Step>
+  <Step title="Verificação do orderbook">
+    O engine verifica os asks disponíveis. Existe um ask de 400 tokens a 0,79 — preços se cruzam!
+  </Step>
+  <Step title="Match executado">
+    Os 200 tokens são transferidos do vendedor para o comprador a 0,79 USDC cada.
+  </Step>
+  <Step title="Ordens atualizadas">
+    O ask de 400 tokens passa a ter 200 tokens restantes. A ordem de compra é marcada como executada.
+  </Step>
+  <Step title="Liquidação on-chain">
+    O trade é enviado para a fila de liquidação e registrado na Solana em ~3 segundos.
+  </Step>
+</Steps>
+
+## Profundidade de mercado
+
+A **profundidade** do orderbook indica quanta liquidez existe em cada nível de preço. Mercados com alta profundidade permitem que ordens grandes sejam executadas sem mover muito o preço.
+
+Um trade grande pode "consumir" várias ordens em sequência, executando a preços progressivamente menos favoráveis (chamado de **slippage**).
+
+<Tip>
+  Para ordens grandes, use ordens limitadas para controlar o preço máximo de execução e evitar slippage excessivo.
+</Tip>
+
+## Atualizações em tempo real
+
+O orderbook é atualizado em tempo real via WebSocket. Você vê as mudanças instantaneamente:
+
+- Novas ordens adicionadas
+- Ordens executadas ou canceladas
+- Atualização do preço após cada trade
+- Profundidade (volume em cada nível de preço)
+
+## Histórico de trades
+
+Cada trade executado é registrado publicamente com:
+
+- Horário da execução
+- Preço de execução
+- Quantidade negociada
+- Lado (compra/venda)
+
+Isso forma o **histórico de preços** do mercado, visível no gráfico de cada mercado.
+
+---
+
+## Estado das ordens
+
+| Status | Significado |
+|--------|------------|
+| **Pending** | Recebida, aguardando processamento |
+| **Open** | Ativa no orderbook, aguardando contraparte |
+| **Partial** | Parcialmente executada, restante ainda no orderbook |
+| **Filled** | Completamente executada |
+| **Cancelled** | Cancelada pelo usuário ou pelo sistema |
+
+## Ordens expiradas
+
+Ordens podem ter uma data de expiração. Se não executadas até o prazo, são automaticamente canceladas e o USDC bloqueado é liberado para o saldo disponível.

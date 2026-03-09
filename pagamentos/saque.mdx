@@ -1,0 +1,110 @@
+---
+title: Saque via PIX
+description: Como converter USDC para reais e receber via PIX.
+---
+
+## Como funciona
+
+O saque converte seu USDC para reais e envia via PIX para a conta bancária associada à sua chave PIX cadastrada.
+
+```
+USDC na carteira → Conversão USDC/BRL → PIX para sua conta
+```
+
+## Pré-requisitos
+
+Antes de sacar, você precisa ter:
+
+1. **Chave PIX cadastrada** no Oraculo (CPF, e-mail, telefone ou chave aleatória)
+2. **USDC disponível** no saldo (não bloqueado em ordens abertas)
+
+## Passo a passo
+
+<Steps>
+  <Step title="Cadastre sua chave PIX">
+    Na primeira vez, vá em **Configurações → Chave PIX** e cadastre a chave da sua conta bancária. Esta chave será usada para todos os saques futuros.
+  </Step>
+
+  <Step title="Acesse Sacar">
+    Vá em **Carteira → Sacar** no app.
+  </Step>
+
+  <Step title="Informe o valor">
+    Digite o valor em USDC que deseja sacar. O sistema mostrará:
+    - Valor em USDC enviado
+    - Estimativa de BRL a receber
+    - Taxa de conversão e taxas de rede
+    - Valor líquido estimado em reais
+  </Step>
+
+  <Step title="Confirme o saque">
+    Revise os valores e confirme. Após confirmação:
+    1. O USDC é debitado da sua carteira
+    2. O provedor converte USDC → BRL
+    3. O valor em reais é transferido via PIX para a chave cadastrada
+  </Step>
+
+  <Step title="Aguarde o recebimento">
+    O processo leva entre **10 e 30 minutos**. Você receberá uma notificação quando concluído.
+  </Step>
+</Steps>
+
+## Status do saque
+
+| Status | Significado |
+|--------|------------|
+| **Pendente** | Solicitação recebida, aguardando processamento |
+| **Processando** | USDC sendo convertido para BRL |
+| **Concluído** | PIX enviado para a sua conta |
+| **Falhou** | Erro no processamento (USDC devolvido) |
+
+## Taxas de saque
+
+| Taxa | Valor |
+|------|-------|
+| **Taxa da plataforma** | 1% sobre o valor em USDC |
+| **Taxa de rede** | Variável (custo da transação Solana) |
+| **Taxa de conversão** | Spread da cotação do provedor |
+
+<Info>
+  O valor estimado mostrado antes da confirmação já inclui todas as taxas. O valor real pode variar ligeiramente devido à cotação de mercado no momento da conversão.
+</Info>
+
+## Limites
+
+| | Valor |
+|--|-------|
+| **Saque mínimo** | Equivalente a R$ 20,00 em USDC |
+| **Saque máximo** | Seu saldo disponível |
+
+## Gerenciando sua chave PIX
+
+Na seção **Configurações → Chave PIX**, você pode:
+
+- Cadastrar uma chave PIX
+- Verificar a chave cadastrada
+- Alterar para uma nova chave
+
+<Warning>
+  Saques são enviados exclusivamente para a chave PIX cadastrada na sua conta. Verifique se a chave está correta antes de solicitar o saque. O Oraculo não se responsabiliza por saques enviados para chaves incorretas cadastradas pelo usuário.
+</Warning>
+
+## Perguntas frequentes
+
+<AccordionGroup>
+  <Accordion title="Posso sacar para outra pessoa?">
+    Não. Por segurança, saques só podem ser enviados para a chave PIX cadastrada na sua própria conta Oraculo.
+  </Accordion>
+
+  <Accordion title="O saque falhou e o USDC foi devolvido?">
+    Sim, em caso de falha (chave PIX inválida, erro do provedor), o USDC é devolvido ao saldo disponível automaticamente. Você receberá uma notificação com o motivo.
+  </Accordion>
+
+  <Accordion title="Posso cancelar um saque após solicitar?">
+    Não é possível cancelar após a confirmação. O processo começa imediatamente.
+  </Accordion>
+
+  <Accordion title="Meu USDC some durante o saque?">
+    O USDC é debitado da sua carteira no momento da confirmação. Ele fica em processamento até a conclusão do PIX. O saldo em processamento fica visível no app.
+  </Accordion>
+</AccordionGroup>

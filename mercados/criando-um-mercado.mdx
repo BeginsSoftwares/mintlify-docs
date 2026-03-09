@@ -1,0 +1,104 @@
+---
+title: Criando um Mercado
+description: Passo a passo para criar seu próprio mercado de predição no Oraculo.
+---
+
+## Requisitos
+
+Para criar um mercado, você precisa de:
+
+- Conta verificada no Oraculo
+- **Mínimo de 2 USDC** disponível (bloqueado como garantia durante a vigência do mercado)
+
+## Passo a passo
+
+<Steps>
+  <Step title="Acesse Criar Mercado">
+    No app, clique no botão **"+ Criar Mercado"** disponível na página principal ou na seção de mercados.
+  </Step>
+
+  <Step title="Escreva a pergunta">
+    A pergunta deve ser:
+    - **Clara e objetiva** — com apenas dois desfechos possíveis (SIM ou NÃO)
+    - **Verificável** — deve ser possível determinar o resultado com base em fontes públicas
+    - **Com prazo definido** — o resultado deve ocorrer antes da data de encerramento
+
+    ✅ *"O Nubank vai atingir 100 milhões de clientes até dezembro de 2025?"*
+
+    ❌ *"O Bitcoin vai subir?"* (sem prazo, sem referência de preço)
+
+    ❌ *"Quem vai ganhar as próximas eleições?"* (não é binário)
+  </Step>
+
+  <Step title="Adicione uma descrição">
+    Use a descrição para:
+    - Contextualizar o evento
+    - Especificar **critérios de resolução** (qual fonte será usada, como o resultado será determinado)
+    - Adicionar links para referências relevantes
+
+    <Tip>
+      Mercados com critérios de resolução bem definidos atraem mais liquidez, pois os participantes confiam mais no processo.
+    </Tip>
+  </Step>
+
+  <Step title="Configure os metadados">
+    - **Categoria**: Escolha a mais adequada (crypto, sports, politics, social, games, general)
+    - **Região**: Brasil ou EUA
+    - **Data de encerramento**: Quando o mercado fecha para novas ordens
+    - **Imagem** (opcional): Uma imagem de capa para o mercado
+  </Step>
+
+  <Step title="Confirme a criação">
+    Revise todos os dados e confirme. O sistema irá:
+    1. Bloquear 2 USDC da sua conta como garantia
+    2. Criar o mercado no banco de dados
+    3. Fazer deploy dos tokens SIM e NÃO na Solana
+    4. Publicar o mercado para negociação
+  </Step>
+</Steps>
+
+## Após a criação
+
+Depois que seu mercado for criado:
+
+- Qualquer usuário pode negociar posições SIM/NÃO
+- Você pode acompanhar o volume e o preço em tempo real
+- A data de encerramento é **imutável** — planeje com cuidado
+
+Quando o mercado encerrar, a equipe Oraculo irá verificar o resultado e resolver o mercado. Os 2 USDC de garantia são devolvidos após a resolução.
+
+## Boas práticas
+
+<AccordionGroup>
+  <Accordion title="Escreva critérios de resolução detalhados">
+    Especifique exatamente qual fonte será usada para determinar o resultado. Exemplo: *"Resultado baseado no placar oficial publicado no site da CBF até 24h após o jogo."*
+  </Accordion>
+
+  <Accordion title="Defina prazos realistas">
+    A data de encerramento deve dar tempo suficiente para o evento ocorrer E para o resultado ser verificável.
+  </Accordion>
+
+  <Accordion title="Evite perguntas ambíguas">
+    Termos como "em breve", "provavelmente" ou "muito" tornam a resolução subjetiva e podem levar ao cancelamento.
+  </Accordion>
+
+  <Accordion title="Use imagens relevantes">
+    Uma boa imagem de capa aumenta a visibilidade do mercado na listagem e atrai mais participantes.
+  </Accordion>
+</AccordionGroup>
+
+## Exemplo de mercado bem estruturado
+
+```
+Pergunta:
+"O Palmeiras vai ser campeão do Brasileirão 2025?"
+
+Descrição:
+"Mercado resolvido SIM se o Palmeiras terminar o Campeonato Brasileiro 2025
+na 1ª posição da tabela. Resolução baseada no site oficial da CBF
+(cbf.com.br) após a última rodada da competição."
+
+Categoria: Sports
+Região: Brazil
+Encerramento: 07/12/2025
+```

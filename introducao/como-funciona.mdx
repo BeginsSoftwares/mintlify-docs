@@ -1,0 +1,97 @@
+---
+title: Como funciona
+description: Fluxo completo do Oraculo — do cadastro ao payout.
+---
+
+## Visão geral
+
+O Oraculo conecta três pilares: **identidade** (quem você é), **pagamentos** (como você entra e sai com dinheiro) e **mercados** (onde você opera). Este guia mostra como tudo se encaixa.
+
+## Fluxo completo
+
+<Steps>
+  <Step title="Cadastro e carteira">
+    Ao criar sua conta com e-mail, Google ou GitHub, o Oraculo gera automaticamente uma **carteira Solana** para você. Você não precisa instalar extensões de navegador nem guardar seed phrases — a chave privada fica protegida em infraestrutura segura (Privy), acessível apenas com sua autenticação.
+
+    Você receberá um endereço Solana público (ex: `8xKj...dQ4f`) que identifica sua carteira on-chain.
+  </Step>
+
+  <Step title="Depositar via PIX">
+    Para operar, você precisa de USDC. O processo de depósito é simples:
+
+    1. Acesse **Depositar** no app
+    2. Informe o valor em reais (mín. R$ 10)
+    3. Escaneie o QR Code PIX gerado
+    4. O sistema converte automaticamente BRL → USDC
+    5. USDC chega na sua carteira Solana em minutos
+
+    Não é necessário ter cripto ou usar exchanges externas.
+  </Step>
+
+  <Step title="Escolher um mercado">
+    Navegue pelos mercados disponíveis. Cada mercado apresenta:
+    - A pergunta (ex: *"O Lula vai ser reeleito?"*)
+    - O preço atual dos tokens SIM e NÃO (entre 0 e 1)
+    - Data de encerramento
+    - Volume negociado e liquidez disponível
+
+    O **preço** de um token SIM representa a probabilidade implícita de o evento ocorrer. Se um token SIM custa 0,70, o mercado estima 70% de chance de acontecer.
+  </Step>
+
+  <Step title="Colocar uma ordem">
+    Com USDC disponível, você pode:
+
+    - **Comprar SIM** — apostando que o evento vai ocorrer
+    - **Comprar NÃO** — apostando que o evento não vai ocorrer
+    - **Vender** — fechar uma posição existente
+
+    Você pode usar **ordens limitadas** (define o preço que aceita) ou **ordens a mercado** (executa ao melhor preço disponível).
+  </Step>
+
+  <Step title="Aguardar a resolução">
+    Quando a data de encerramento chega, o mercado é fechado para novas negociações. Um administrador ou oráculo de preço verifica o resultado e **resolve o mercado**.
+
+    - Se você apostou corretamente, recebe payout em USDC proporcional à sua posição
+    - Se errou, perde o valor investido naquela posição
+
+    O payout é depositado diretamente na sua carteira.
+  </Step>
+
+  <Step title="Sacar via PIX">
+    Para converter seu USDC de volta para reais, acesse **Sacar**:
+
+    1. Informe o valor e sua chave PIX
+    2. O sistema envia USDC da sua carteira para o provedor
+    3. O provedor converte USDC → BRL
+    4. Reais caem na sua conta via PIX
+  </Step>
+</Steps>
+
+## Arquitetura simplificada
+
+```
+Usuário
+  │
+  ├─ Depósito PIX → [Provedor de Pagamento] → USDC na Solana
+  │
+  ├─ Ordem no Orderbook → [Motor de Matching] → Trade Executado
+  │                                                    │
+  │                                              Liquidação on-chain (Solana)
+  │
+  ├─ Resolução do Mercado → [Oráculo/Admin] → Payout automático
+  │
+  └─ Saque PIX → USDC enviado → [Provedor] → BRL via PIX
+```
+
+## Tempo de processamento
+
+| Operação | Tempo estimado |
+|---|---|
+| Depósito PIX | 2 a 10 minutos |
+| Execução de ordem | Imediato (on-chain em ~3s) |
+| Resolução de mercado | Após data de encerramento |
+| Saque PIX | 10 a 30 minutos |
+
+<Info>
+  Os tempos de depósito e saque dependem do provedor de pagamento e das condições da rede Solana no momento.
+</Info>

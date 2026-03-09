@@ -1,0 +1,106 @@
+---
+title: Depósito via PIX
+description: Como depositar reais e converter para USDC usando PIX.
+---
+
+## Como funciona
+
+O Oraculo permite que você deposite reais (BRL) diretamente via PIX e receba USDC na sua carteira Solana de forma automática. Não é necessário ter cripto previamente nem usar exchanges externas.
+
+O fluxo completo acontece em 4 etapas automáticas:
+
+```
+PIX enviado → Conversão BRL/USDC → Transferência Solana → USDC na carteira
+```
+
+## Passo a passo
+
+<Steps>
+  <Step title="Acesse Depositar">
+    No app, vá em **Carteira → Depositar** ou clique no botão de depósito na tela principal.
+  </Step>
+
+  <Step title="Informe o valor">
+    Digite o valor em reais que deseja depositar. O sistema mostrará:
+    - Valor em BRL
+    - Estimativa de USDC a receber (baseada na cotação atual)
+    - Taxa de conversão
+  </Step>
+
+  <Step title="Escaneie o QR Code PIX">
+    Um QR Code é gerado automaticamente. Escaneie com o aplicativo do seu banco ou copie o código PIX.
+
+    <Warning>
+      O QR Code tem validade limitada. Realize o pagamento dentro do prazo exibido na tela.
+    </Warning>
+  </Step>
+
+  <Step title="Aguarde a confirmação">
+    Após o pagamento PIX ser confirmado:
+    1. O sistema recebe o webhook de confirmação do provedor
+    2. Você recebe uma notificação no app em tempo real
+    3. A conversão BRL → USDC é iniciada automaticamente
+    4. O USDC é enviado para sua carteira Solana
+
+    O processo completo leva entre **2 e 10 minutos**.
+  </Step>
+</Steps>
+
+## Acompanhamento em tempo real
+
+Você pode acompanhar cada etapa do depósito no app:
+
+| Status | Significado |
+|--------|------------|
+| **Aguardando pagamento** | QR Code gerado, PIX ainda não recebido |
+| **PIX recebido** | Pagamento confirmado, convertendo |
+| **Processando** | Conversão BRL → USDC em andamento |
+| **Concluído** | USDC disponível na sua carteira |
+
+## Taxas de depósito
+
+| Taxa | Valor |
+|------|-------|
+| **Taxa da plataforma** | 1% sobre o valor em USDC |
+| **Taxa de rede (Solana)** | Frações de centavo (< $0,001) |
+
+O valor final de USDC recebido já desconta essas taxas. A estimativa mostrada antes do pagamento inclui todos os custos.
+
+<Note>
+  A cotação BRL/USDC usada para conversão é a cotação de mercado no momento do processamento, não no momento da geração do QR Code. Em casos de alta volatilidade cambial, o valor recebido pode variar ligeiramente.
+</Note>
+
+## Limites
+
+| | Valor |
+|--|-------|
+| **Depósito mínimo** | R$ 10,00 |
+| **Depósito máximo por transação** | Conforme limite do seu banco para PIX |
+
+## Provedor de pagamentos
+
+O Oraculo trabalha com provedores especializados em conversão BRL/USDC para processar os depósitos. O provedor ativo pode variar conforme disponibilidade e otimização de taxas. Esta operação é totalmente transparente para o usuário — você só interage com o QR Code PIX gerado pelo Oraculo.
+
+## Perguntas frequentes
+
+<AccordionGroup>
+  <Accordion title="Quanto tempo leva para o USDC chegar?">
+    Normalmente entre 2 e 10 minutos após o pagamento PIX ser confirmado. Em casos de alta demanda ou instabilidade de rede, pode levar até 30 minutos.
+  </Accordion>
+
+  <Accordion title="Paguei o PIX mas não recebi o USDC">
+    Verifique o status do depósito no app. Se após 30 minutos ainda não estiver concluído, entre em contato com o suporte com o comprovante PIX e o ID da transação.
+  </Accordion>
+
+  <Accordion title="Posso depositar de qualquer banco?">
+    Sim, o PIX é universal. Qualquer banco brasileiro que suporte PIX pode ser usado.
+  </Accordion>
+
+  <Accordion title="O QR Code expirou antes de eu pagar">
+    Volte ao app e gere um novo QR Code. O QR Code anterior é invalidado automaticamente.
+  </Accordion>
+
+  <Accordion title="Posso fazer múltiplos depósitos simultaneamente?">
+    Sim, cada depósito gera um QR Code independente e é processado separadamente.
+  </Accordion>
+</AccordionGroup>

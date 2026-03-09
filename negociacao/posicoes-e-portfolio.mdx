@@ -1,0 +1,105 @@
+---
+title: Posições e Portfólio
+description: Como acompanhar suas posições abertas, histórico de trades e desempenho geral.
+---
+
+## O que é uma posição
+
+Uma **posição** representa seus tokens em um determinado mercado. Quando você compra tokens SIM ou NÃO, você abre uma posição naquele mercado.
+
+Cada posição é composta por:
+
+- **Tokens SIM**: quantidade de tokens do resultado SIM que você possui
+- **Tokens NÃO**: quantidade de tokens do resultado NÃO que você possui
+- **USDC investido**: total gasto para adquirir esses tokens
+- **Preço médio**: custo médio por token, calculado sobre todas as compras
+
+## Saldo e bloqueio
+
+O Oraculo gerencia dois saldos separados para você:
+
+<CardGroup cols={2}>
+  <Card title="Saldo Disponível" icon="circle-check">
+    USDC que você pode usar para novas ordens ou sacar. Calculado como:
+    **Saldo Total − Saldo Bloqueado**
+  </Card>
+  <Card title="Saldo Bloqueado" icon="lock">
+    USDC reservado como garantia para **ordens abertas** no orderbook. Liberado quando a ordem é executada ou cancelada.
+  </Card>
+</CardGroup>
+
+**Exemplo:**
+
+```
+Saldo Total:      150,00 USDC
+Bloqueado:         80,00 USDC (2 ordens abertas)
+─────────────────────────────
+Disponível:        70,00 USDC
+```
+
+## Acompanhando suas posições
+
+Na seção **Portfólio** do app, você vê:
+
+### Por mercado
+
+Para cada mercado em que você tem posição:
+
+| Campo | Descrição |
+|-------|-----------|
+| **Tokens SIM** | Quantidade de tokens SIM que você possui |
+| **Tokens NÃO** | Quantidade de tokens NÃO que você possui |
+| **USDC Investido** | Total gasto nas compras (excluindo vendas) |
+| **Valor atual** | Valoração ao preço atual de mercado |
+| **P&L estimado** | Lucro/Prejuízo não realizado se vender agora |
+
+### P&L não realizado
+
+O P&L (Profit & Loss) não realizado é estimado com base no preço atual:
+
+```
+P&L = (preço_atual × quantidade_tokens) - usdc_investido
+```
+
+<Warning>
+  Este é um P&L **estimado**. O valor real só é confirmado quando o mercado é resolvido (payout definitivo) ou quando você vende seus tokens no orderbook.
+</Warning>
+
+## Fechando uma posição
+
+Você pode fechar (total ou parcialmente) uma posição a qualquer momento antes da resolução do mercado, **vendendo seus tokens no orderbook**:
+
+1. Acesse o mercado no app
+2. Clique em **Vender**
+3. Escolha o token (SIM ou NÃO) e a quantidade
+4. Coloque uma ordem limitada ou a mercado
+5. Quando executada, o USDC é creditado no seu saldo disponível
+
+<Note>
+  Vender tokens não garante recuperar o valor investido — o preço de venda depende das ordens disponíveis no orderbook no momento.
+</Note>
+
+## Histórico de trades
+
+O histórico registra todas as execuções de ordens com:
+
+- Data e hora
+- Mercado
+- Side (compra/venda)
+- Token (SIM/NÃO)
+- Preço de execução
+- Quantidade
+- Valor total
+
+## Ordens abertas
+
+Na aba **Ordens Abertas**, você vê todas as ordens limitadas que ainda não foram executadas. Você pode cancelar qualquer uma delas, liberando o USDC bloqueado imediatamente.
+
+## Após a resolução
+
+Quando um mercado é resolvido:
+
+- Posições no lado vencedor recebem payout automático (1 USDC por token)
+- Posições no lado perdedor são zeradas
+- O USDC do payout é creditado no seu saldo disponível
+- O histórico do mercado fica acessível permanentemente no perfil

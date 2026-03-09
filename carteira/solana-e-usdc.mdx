@@ -1,0 +1,77 @@
+---
+title: Solana e USDC
+description: Por que o Oraculo usa Solana e USDC — e o que isso significa para você.
+---
+
+## Por que Solana
+
+O Oraculo foi construído sobre a blockchain **Solana** por três razões principais:
+
+<CardGroup cols={3}>
+  <Card title="Velocidade" icon="bolt">
+    Solana processa até **65.000 transações por segundo**. Trades são confirmados em 400ms — imperceptível para o usuário.
+  </Card>
+  <Card title="Custo baixo" icon="tag">
+    Taxas de rede na Solana custam frações de centavo (< $0,001 por transação), tornando microtrades viáveis.
+  </Card>
+  <Card title="Ecossistema DeFi" icon="network-wired">
+    Solana tem o segundo maior ecossistema DeFi, com exchanges, bridges e stablecoins amplamente suportados.
+  </Card>
+</CardGroup>
+
+## O que é USDC
+
+**USDC (USD Coin)** é uma stablecoin emitida pela **Circle**, lastreada 1:1 com o dólar americano. Cada USDC em circulação corresponde a $1,00 reservado em dinheiro ou equivalentes de caixa.
+
+Por ser uma stablecoin, o USDC **não tem volatilidade** como Bitcoin ou Solana — ideal para usar como moeda de negociação em mercados de predição.
+
+### Por que USDC e não BRL?
+
+| | BRL | USDC |
+|---|---|---|
+| **Disponível na blockchain** | Não | Sim |
+| **Volatilidade** | Inflação gradual | Estável (1 USD) |
+| **Aceitação global** | Brasil apenas | Mundial |
+| **Smart contracts** | Impossível | Nativo |
+
+O BRL serve como **moeda de entrada/saída** via PIX. Dentro da plataforma, tudo é denominado em USDC para garantir consistência e liquidação on-chain.
+
+## Tokens SPL na Solana
+
+Todos os tokens de mercado do Oraculo (tokens SIM e NÃO) são **SPL Tokens** — o padrão de tokens da Solana, equivalente ao ERC-20 do Ethereum.
+
+Isso significa que:
+- Cada token tem um contrato na blockchain Solana
+- Transferências são verificáveis no explorador Solana
+- Saldos são auditáveis por qualquer pessoa com seu endereço público
+
+## Exploradores Solana
+
+Para verificar suas transações e saldos on-chain:
+
+| Explorador | URL |
+|-----------|-----|
+| **Solana Explorer** | explorer.solana.com |
+| **Solscan** | solscan.io |
+| **SolanaFM** | solana.fm |
+
+Basta colar seu endereço de carteira para ver todo o histórico on-chain.
+
+## Smart Contracts (Programas Solana)
+
+O Oraculo usa **programas Solana** (equivalentes a smart contracts) para:
+
+- **Criação de mercados**: Deploy dos tokens SIM/NÃO e configuração do mercado on-chain
+- **Execução de trades**: Liquidação das ordens executadas no orderbook
+- **Resolução**: Registro imutável do resultado do mercado
+- **Payouts**: Transferência automática de USDC para carteiras vencedoras
+
+Todo esse processo é transparente — o código dos contratos pode ser verificado e as transações auditadas on-chain.
+
+## Rede Mainnet
+
+O Oraculo opera na **Solana Mainnet** — a rede principal com transações reais e ativos reais. Não é uma testnet ou ambiente simulado.
+
+<Info>
+  Em caso de manutenção da rede Solana ou instabilidade do RPC, algumas operações podem ser temporariamente afetadas. O status da rede pode ser verificado em status.solana.com.
+</Info>

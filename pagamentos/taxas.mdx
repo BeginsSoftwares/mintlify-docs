@@ -1,0 +1,74 @@
+---
+title: Taxas
+description: Resumo completo de todas as taxas cobradas no Oraculo.
+---
+
+## Visão geral
+
+O Oraculo cobra taxas em dois momentos: nas **negociações** (trades) e nos **pagamentos** (depósitos e saques).
+
+## Taxas de negociação
+
+| Taxa | Valor | Incidência |
+|------|-------|-----------|
+| **Taxa de taker** | 0,01% (1 basis point) | Sobre o valor de cada trade executado |
+
+A taxa de negociação é cobrada apenas de quem **executa** (taker) — ou seja, de quem faz uma ordem a mercado ou cujo bid/ask cruza com uma ordem existente. Quem coloca uma ordem limitada que fica aguardando (maker) não paga taxa de execução.
+
+**Exemplo:**
+
+```
+Trade: Compra de 500 tokens SIM a 0,70 USDC
+Valor total: 350,00 USDC
+Taxa (0,01%): 0,035 USDC
+Custo efetivo: 350,035 USDC
+```
+
+## Taxas de pagamento
+
+| Operação | Taxa Plataforma | Taxas de Rede |
+|----------|----------------|---------------|
+| **Depósito PIX** | 1% sobre USDC recebido | < $0,001 (rede Solana) |
+| **Saque PIX** | 1% sobre USDC enviado | Variável (Solana + conversão) |
+
+### Como as taxas de pagamento são calculadas
+
+**Depósito:**
+```
+Você envia: R$ 100,00
+Convertido para USDC: ~$20,00 (pela cotação do dia)
+Taxa plataforma (1%): $0,20
+Taxa de rede: ~$0,001
+USDC recebido: ~$19,799
+```
+
+**Saque:**
+```
+Você solicita: $50,00 USDC
+Taxa plataforma (1%): $0,50
+Taxa de rede: ~$0,005
+USDC enviado ao provedor: ~$49,495
+BRL recebido: ~R$ 247,00 (pela cotação do dia)
+```
+
+## Onde as taxas vão
+
+- **Taxas de negociação** → Tesouro da plataforma (liquidez e desenvolvimento)
+- **Taxa de plataforma nos pagamentos** → Operação e infraestrutura
+- **Taxa de rede** → Repassadas ao provedor de pagamentos e à rede Solana
+
+## Sem taxas ocultas
+
+O Oraculo exibe todas as taxas de forma transparente antes de você confirmar qualquer operação. O valor estimado mostrado no app já inclui todos os custos — não há cobranças surpresa após a confirmação.
+
+## Comparação com alternativas
+
+| | Oraculo | Exchange Centralizada | Corretora Tradicional |
+|---|---|---|---|
+| **Taxa de trade** | 0,01% | 0,1% a 0,5% | 0,5% a 2% |
+| **Depósito** | 1% + spread | 0% a 1% + spread | 1% a 3% |
+| **Custódia** | Sua carteira | Plataforma | Plataforma |
+
+<Note>
+  As taxas podem ser ajustadas pela plataforma com aviso prévio. Consulte sempre as taxas atualizadas no app antes de operar.
+</Note>

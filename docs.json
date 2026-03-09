@@ -1,122 +1,83 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
+  "$schema": "https://mintlify.com/docs/schema",
+  "name": "Oraculo",
+  "theme": "maple",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg"
+  },
+  "favicon": "/images/favicon.svg",
+  "colors": {
+    "primary": "#7C3AED",
+    "light": "#A78BFA",
+    "dark": "#5B21B6"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "App",
+        "href": "https://oraculo.gg"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Começar a Operar",
+      "href": "https://oraculo.gg"
     }
   },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+  "navigation": {
+    "groups": [
+      {
+        "group": "Introdução",
+        "pages": [
+          "index",
+          "introducao/o-que-e-oraculo",
+          "introducao/como-funciona",
+          "introducao/glossario"
+        ]
+      },
+      {
+        "group": "Mercados",
+        "pages": [
+          "mercados/visao-geral",
+          "mercados/tipos-de-mercados",
+          "mercados/criando-um-mercado",
+          "mercados/resolucao-e-liquidacao"
+        ]
+      },
+      {
+        "group": "Negociação",
+        "pages": [
+          "negociacao/orderbook",
+          "negociacao/tipos-de-ordem",
+          "negociacao/modelo-de-precos",
+          "negociacao/posicoes-e-portfolio"
+        ]
+      },
+      {
+        "group": "Pagamentos",
+        "pages": [
+          "pagamentos/deposito-pix",
+          "pagamentos/saque",
+          "pagamentos/taxas"
+        ]
+      },
+      {
+        "group": "Carteira & Blockchain",
+        "pages": [
+          "carteira/autocustodia",
+          "carteira/solana-e-usdc"
+        ]
+      }
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/oraculo_gg",
+      "github": "https://github.com/oraculo"
     }
+  },
+  "feedback": {
+    "thumbsRating": true
   }
 }

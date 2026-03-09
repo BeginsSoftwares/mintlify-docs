@@ -1,0 +1,102 @@
+---
+title: Visão Geral dos Mercados
+description: Entenda a estrutura dos mercados no Oraculo — como são criados, organizados e acessados.
+---
+
+## O que é um mercado
+
+Um mercado no Oraculo é uma pergunta binária sobre um evento futuro. Cada mercado tem exatamente dois desfechos possíveis: **SIM** ou **NÃO**.
+
+Exemplos de perguntas válidas:
+- *"O Bitcoin vai superar $150.000 até 31/12/2025?"*
+- *"O Flamengo vai ser campeão da Libertadores 2025?"*
+- *"Haverá eleições antecipadas no Brasil em 2026?"*
+
+## Estrutura de um mercado
+
+Cada mercado contém:
+
+<ResponseField name="Pergunta" type="string" required>
+  A questão central do mercado (até 200 caracteres).
+</ResponseField>
+
+<ResponseField name="Descrição" type="string">
+  Contexto adicional sobre o evento, critérios de resolução e fontes de informação.
+</ResponseField>
+
+<ResponseField name="Categoria" type="enum">
+  `crypto` | `sports` | `politics` | `social` | `games` | `general`
+</ResponseField>
+
+<ResponseField name="Região" type="enum">
+  `brazil` | `usa` — define o contexto geográfico do mercado.
+</ResponseField>
+
+<ResponseField name="Data de Encerramento" type="datetime">
+  Após esta data, nenhuma nova ordem pode ser colocada. O mercado entra no período de resolução.
+</ResponseField>
+
+<ResponseField name="Tipo" type="enum">
+  `standard` (resolução manual) | `price_5min` (resolução automática por preço de ativo).
+</ResponseField>
+
+## Tokens on-chain
+
+Quando um mercado é criado, dois tokens SPL são gerados na Solana:
+
+- **YES mint** — token que representa o desfecho SIM
+- **NO mint** — token que representa o desfecho NÃO
+
+Cada token é negociado em um preço entre **0 e 1 USDC**. A soma dos preços SIM + NÃO tende a 1, refletindo probabilidades complementares.
+
+<Tip>
+  Se o token SIM está a 0,72 e o token NÃO está a 0,28, o mercado estima 72% de chance do evento ocorrer.
+</Tip>
+
+## Categorias
+
+<CardGroup cols={3}>
+  <Card title="Crypto" icon="bitcoin">
+    Preços de ativos, adoção de protocolos, eventos do mercado cripto.
+  </Card>
+  <Card title="Sports" icon="futbol">
+    Resultados de partidas, campeonatos, transferências.
+  </Card>
+  <Card title="Politics" icon="landmark">
+    Eleições, aprovações de projetos, decisões governamentais.
+  </Card>
+  <Card title="Social" icon="users">
+    Tendências culturais, redes sociais, acontecimentos virais.
+  </Card>
+  <Card title="Games" icon="gamepad">
+    Competições de e-sports, lançamentos, resultados de torneios.
+  </Card>
+  <Card title="General" icon="globe">
+    Qualquer evento que não se enquadre nas categorias anteriores.
+  </Card>
+</CardGroup>
+
+## Ciclo de vida de um mercado
+
+```
+[Criação] → [Aberto para negociação] → [Encerrado] → [Resolvido] → [Liquidado]
+```
+
+| Status | O que acontece |
+|--------|---------------|
+| **Aberto** | Usuários podem criar e cancelar ordens livremente |
+| **Encerrado** | Data de encerramento passou; sem novas ordens |
+| **Resolvido** | Admin ou oráculo determina o vencedor (SIM/NÃO) |
+| **Liquidado** | Payouts distribuídos para os vencedores via smart contract |
+
+## Descoberta e filtros
+
+No app, os mercados podem ser filtrados por:
+
+- **Categoria** (crypto, sports, politics...)
+- **Região** (Brasil, EUA)
+- **Status** (abertos, resolvidos, em alta)
+- **Volume** negociado
+- **Data de encerramento**
+
+Os mercados em alta aparecem na seção **Trending**, calculada com base no volume recente de negociação.

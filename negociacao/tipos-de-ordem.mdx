@@ -1,0 +1,116 @@
+---
+title: Tipos de Ordem
+description: Ordens limitadas, ordens a mercado e como usar cada uma.
+---
+
+## Ordem Limitada (Limit Order)
+
+Uma ordem limitada permite que você especifique o **preço exato** que aceita pagar (compra) ou receber (venda). A ordem fica no orderbook até ser executada total ou parcialmente, ou cancelada manualmente.
+
+**Quando usar:**
+- Quando você quer controle total sobre o preço de execução
+- Quando não há urgência na execução
+- Para ordens grandes onde slippage importa
+
+<Tabs>
+  <Tab title="Compra Limitada">
+    Você quer comprar 500 tokens SIM a no máximo 0,65 USDC.
+
+    ```
+    Tipo: Compra Limitada
+    Token: SIM
+    Quantidade: 500
+    Preço máximo: 0,65 USDC
+    ```
+
+    A ordem entra no orderbook como bid. Se existir um ask ≤ 0,65, ocorre match imediato. Caso contrário, sua ordem aguarda uma contraparte.
+
+    **USDC bloqueado:** 500 × 0,65 = **325 USDC**
+  </Tab>
+  <Tab title="Venda Limitada">
+    Você quer vender 200 tokens NÃO a no mínimo 0,40 USDC cada.
+
+    ```
+    Tipo: Venda Limitada
+    Token: NÃO
+    Quantidade: 200
+    Preço mínimo: 0,40 USDC
+    ```
+
+    A ordem entra no orderbook como ask. Se existir um bid ≥ 0,40, ocorre match. Caso contrário, aguarda.
+  </Tab>
+</Tabs>
+
+---
+
+## Ordem a Mercado (Market Order)
+
+Uma ordem a mercado executa **imediatamente** ao melhor preço disponível no orderbook, consumindo as ordens existentes até satisfazer a quantidade solicitada.
+
+**Quando usar:**
+- Quando velocidade de execução é prioridade
+- Para ordens pequenas onde slippage é aceitável
+- Quando você quer certeza de execução
+
+<Warning>
+  Ordens a mercado não garantem um preço fixo. Em mercados com baixa liquidez, você pode pagar significativamente mais (compra) ou receber menos (venda) do que esperava.
+</Warning>
+
+**Exemplo:**
+
+```
+Orderbook de asks disponíveis:
+0,70 → 100 tokens
+0,72 → 200 tokens
+0,75 → 500 tokens
+
+Você coloca ordem a mercado de compra: 250 tokens SIM
+```
+
+Resultado:
+- 100 tokens a 0,70 ✓
+- 150 tokens a 0,72 ✓
+- Preço médio = (100×0,70 + 150×0,72) / 250 = **0,712 USDC**
+
+---
+
+## Comparação
+
+| | Limitada | A Mercado |
+|---|---|---|
+| **Controle de preço** | Total | Nenhum |
+| **Execução garantida** | Não | Sim (se houver liquidez) |
+| **Velocidade** | Pode demorar | Imediata |
+| **Ideal para** | Ordens grandes, paciência | Ordens pequenas, urgência |
+| **Risco de slippage** | Nenhum | Alto em mercados ilíquidos |
+
+---
+
+## Cancelando uma ordem
+
+Ordens limitadas abertas (não executadas) podem ser canceladas a qualquer momento:
+
+1. Acesse **Minhas Ordens** no app
+2. Localize a ordem desejada
+3. Clique em **Cancelar**
+
+Ao cancelar:
+- O USDC bloqueado é imediatamente devolvido ao saldo disponível
+- Ordens parcialmente executadas têm o USDC da parte não executada devolvido
+
+<Note>
+  Ordens que já foram executadas (total ou parcialmente) não podem ser revertidas. Apenas a parte ainda aberta pode ser cancelada.
+</Note>
+
+---
+
+## Compra vs. Venda de tokens
+
+Entendendo as operações disponíveis:
+
+| Operação | Efeito | Quando faz sentido |
+|----------|--------|-------------------|
+| **Comprar SIM** | Abre posição SIM; USDC bloqueado | Acredita que o evento vai ocorrer |
+| **Comprar NÃO** | Abre posição NÃO; USDC bloqueado | Acredita que o evento não vai ocorrer |
+| **Vender SIM** | Fecha posição SIM; recebe USDC | Quer realizar lucro ou cortar perda em SIM |
+| **Vender NÃO** | Fecha posição NÃO; recebe USDC | Quer realizar lucro ou cortar perda em NÃO |

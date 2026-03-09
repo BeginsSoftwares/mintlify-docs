@@ -1,0 +1,112 @@
+---
+title: Glossário
+description: Definições dos principais termos usados no Oraculo.
+---
+
+## Termos Gerais
+
+<AccordionGroup>
+  <Accordion title="Mercado de Predição">
+    Uma plataforma onde os participantes negociam contratos financeiros sobre o resultado de eventos futuros. O preço dos contratos reflete a probabilidade coletiva estimada pelo mercado para cada desfecho.
+  </Accordion>
+
+  <Accordion title="Token SIM / Token NÃO">
+    Cada mercado possui dois tipos de tokens SPL na Solana: um para o resultado **SIM** e outro para o resultado **NÃO**. Cada token é negociado a um preço entre 0 e 1 USDC. Ao resolver o mercado, tokens do lado vencedor valem 1 USDC cada; os perdedores valem 0.
+  </Accordion>
+
+  <Accordion title="Probabilidade Implícita">
+    O preço de um token SIM corresponde diretamente à probabilidade que o mercado atribui ao evento. Ex: token SIM a 0,65 = 65% de chance de acontecer. A soma dos preços SIM + NÃO sempre tende a 1.
+  </Accordion>
+
+  <Accordion title="Resolução">
+    O momento em que o resultado de um mercado é oficialmente determinado. Pode ser feita por um administrador (para mercados subjetivos) ou automaticamente por um oráculo de preço (para mercados de preço).
+  </Accordion>
+
+  <Accordion title="Payout">
+    O valor em USDC recebido pelo usuário ao ganhar uma posição. Calculado como: quantidade de tokens × preço final (1 USDC para vencedores).
+  </Accordion>
+
+  <Accordion title="Posição">
+    O conjunto de tokens que você possui em um mercado. Exemplo: "Tenho 50 tokens SIM no mercado X a preço médio de 0,60".
+  </Accordion>
+</AccordionGroup>
+
+## Negociação
+
+<AccordionGroup>
+  <Accordion title="Orderbook (Livro de Ordens)">
+    Registro de todas as ordens de compra (bids) e venda (asks) ativas em um mercado. O engine de matching conecta compradores e vendedores quando os preços se cruzam.
+  </Accordion>
+
+  <Accordion title="Ordem Limitada (Limit Order)">
+    Ordem onde você especifica o preço máximo que aceita pagar (compra) ou o mínimo que aceita receber (venda). A ordem fica no orderbook até ser executada ou cancelada.
+  </Accordion>
+
+  <Accordion title="Ordem a Mercado (Market Order)">
+    Ordem que executa imediatamente ao melhor preço disponível no orderbook. Mais rápida, mas o preço exato não é garantido.
+  </Accordion>
+
+  <Accordion title="Bid (Oferta de Compra)">
+    Ordem de compra no orderbook. O bid mais alto representa o maior preço que algum participante está disposto a pagar.
+  </Accordion>
+
+  <Accordion title="Ask (Oferta de Venda)">
+    Ordem de venda no orderbook. O ask mais baixo representa o menor preço que algum participante aceita para vender.
+  </Accordion>
+
+  <Accordion title="Spread">
+    A diferença entre o menor ask e o maior bid. Um spread pequeno indica alta liquidez no mercado.
+  </Accordion>
+
+  <Accordion title="Matching Engine">
+    O componente do sistema que conecta ordens de compra e venda compatíveis. Quando um bid e um ask se cruzam em preço, o match ocorre e o trade é executado.
+  </Accordion>
+
+  <Accordion title="Liquidação (Settlement)">
+    O processo de registrar um trade executado na blockchain Solana. As liquidações são processadas em lotes a cada poucos segundos.
+  </Accordion>
+</AccordionGroup>
+
+## Pagamentos
+
+<AccordionGroup>
+  <Accordion title="PIX">
+    Sistema de pagamentos instantâneos do Banco Central do Brasil, disponível 24/7. Usado no Oraculo para depósitos (BRL → USDC) e saques (USDC → BRL).
+  </Accordion>
+
+  <Accordion title="USDC">
+    USD Coin — stablecoin lastreada 1:1 com o dólar americano, emitida pela Circle. É a moeda utilizada para negociação no Oraculo. Suportada na blockchain Solana.
+  </Accordion>
+
+  <Accordion title="Saldo Disponível">
+    USDC que você pode usar para novas ordens ou sacar. Calculado como: saldo total − saldo bloqueado em ordens abertas.
+  </Accordion>
+
+  <Accordion title="Saldo Bloqueado">
+    USDC reservado como garantia para ordens abertas no orderbook. Fica indisponível enquanto a ordem não for executada ou cancelada.
+  </Accordion>
+</AccordionGroup>
+
+## Blockchain
+
+<AccordionGroup>
+  <Accordion title="Solana">
+    Blockchain de alta performance usada pelo Oraculo para liquidação de trades e armazenamento de posições. Suporta milhares de transações por segundo com taxas de centavos.
+  </Accordion>
+
+  <Accordion title="Carteira (Wallet)">
+    Par de chaves criptográficas que identifica você na blockchain Solana. Sua carteira é criada automaticamente pelo Oraculo no momento do cadastro.
+  </Accordion>
+
+  <Accordion title="SPL Token">
+    Padrão de tokens da Solana (equivalente ao ERC-20 do Ethereum). Os tokens SIM e NÃO de cada mercado são SPL tokens.
+  </Accordion>
+
+  <Accordion title="PDA (Program-Derived Address)">
+    Endereço na Solana controlado por um programa (smart contract), sem chave privada associada. Cada mercado no Oraculo tem um PDA que armazena os dados on-chain.
+  </Accordion>
+
+  <Accordion title="On-chain">
+    Informação ou operação registrada diretamente na blockchain. Garante imutabilidade e auditabilidade pública.
+  </Accordion>
+</AccordionGroup>

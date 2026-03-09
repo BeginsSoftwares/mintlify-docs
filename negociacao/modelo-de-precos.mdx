@@ -1,0 +1,81 @@
+---
+title: Modelo de Preços
+description: Como os preços são formados no Oraculo e o que eles significam.
+---
+
+## Preços como probabilidades
+
+No Oraculo, o preço de um token **é uma probabilidade**. Os preços são restritos ao intervalo `[0, 1]` USDC:
+
+- `0` = o mercado acredita que o evento certamente **não ocorrerá**
+- `1` = o mercado acredita que o evento certamente **ocorrerá**
+- `0,65` = o mercado estima **65% de chance** de ocorrer
+
+Este modelo é baseado no sistema de precificação utilizado pela **Kalshi**, plataforma americana regulamentada de mercados de predição.
+
+## A relação SIM + NÃO
+
+Em teoria, os preços dos tokens SIM e NÃO de um mesmo mercado devem somar `1`:
+
+```
+preço(SIM) + preço(NÃO) = 1
+```
+
+Se SIM está a 0,65, então NÃO deveria estar próximo de 0,35. Quando há desequilíbrio entre os dois preços, surgem oportunidades de arbitragem que o mercado naturalmente corrige.
+
+<Info>
+  Na prática, o spread entre bid e ask de cada lado pode fazer a soma variar ligeiramente em torno de 1.
+</Info>
+
+## Como o preço se forma
+
+O preço de mercado emerge da **interação entre compradores e vendedores** no orderbook:
+
+1. O preço do último trade executado se torna a referência
+2. Novos participantes decidem se concordam com essa avaliação
+3. Se mais pessoas compram SIM, o preço sobe; se mais vendem, cai
+4. O preço converge para o consenso coletivo sobre a probabilidade real
+
+## Lendo um mercado
+
+```
+Mercado: "O IPCA ficará abaixo de 5% em 2025?"
+
+Token SIM: 0,72 ← 72% de chance de o IPCA ficar abaixo de 5%
+Token NÃO: 0,29 ← 29% de chance de o IPCA ficar acima de 5%
+
+Último preço negociado: 0,72
+Volume 24h: 4.500 USDC
+```
+
+Se você acha que o IPCA vai ficar abaixo de 5% e o mercado está precificando isso a apenas 72%, você pode ver isso como uma **oportunidade** (o mercado está subestimando a probabilidade, na sua visão).
+
+## Exemplo de cálculo de retorno
+
+**Cenário:** Você compra 100 tokens SIM a 0,72 USDC
+
+| Situação | Payout | Lucro/Prejuízo |
+|----------|--------|---------------|
+| SIM vence | 100 × 1,00 = 100 USDC | +28 USDC (+38,8%) |
+| NÃO vence | 100 × 0,00 = 0 USDC | -72 USDC (-100%) |
+
+**Retorno esperado** se a probabilidade real for 72%:
+```
+E[retorno] = 0,72 × (+28) + 0,28 × (-72) = +20,16 - 20,16 = 0
+```
+
+O mercado está em equilíbrio — nem a compra nem a venda é obviamente lucrativa. O alpha vem de ter uma estimativa de probabilidade **melhor que o mercado**.
+
+## Movimentação de preços
+
+Os preços se movem conforme novos trades são executados. Um trade de compra de tokens SIM faz o preço de SIM subir; uma venda faz o preço cair.
+
+O gráfico de preços no app mostra a **evolução do preço ao longo do tempo**, permitindo que você veja como a percepção do mercado mudou.
+
+<Tip>
+  Eventos externos (notícias, declarações, resultados parciais) costumam causar movimentos rápidos de preço. Ficar atento ao contexto é parte essencial da estratégia.
+</Tip>
+
+## Limites de preço
+
+O sistema valida que todos os preços inseridos estejam dentro do intervalo `(0, 1)`. Ordens fora deste range são rejeitadas. Isso garante que os mercados sempre reflitam probabilidades válidas.

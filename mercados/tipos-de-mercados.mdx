@@ -1,0 +1,96 @@
+---
+title: Tipos de Mercados
+description: Mercados padrão e mercados de preço — diferenças, uso e resolução.
+---
+
+## Mercados Padrão (`standard`)
+
+Mercados criados por usuários sobre qualquer evento com desfecho binário subjetivo. A resolução é feita manualmente por um administrador após o encerramento.
+
+**Características:**
+- Qualquer usuário pode criar
+- Pergunta livre (política, esportes, cultura, etc.)
+- Resolução manual baseada em evidências públicas
+- Critérios de resolução definidos na descrição do mercado
+
+**Exemplos:**
+- *"O Brasil vai ganhar o próximo jogo da Copa?"*
+- *"O presidente assina o projeto X até junho?"*
+- *"Haverá mais de 1 bilhão de usuários de IA em 2025?"*
+
+<Warning>
+  Mercados com critérios de resolução ambíguos ou impossíveis de verificar objetivamente podem ser cancelados por moderação.
+</Warning>
+
+### Criando um mercado padrão
+
+Para criar um mercado, é necessário **bloquear 2 USDC** como garantia. Esse valor é devolvido após o mercado ser resolvido.
+
+Os campos obrigatórios são:
+- Pergunta
+- Data de encerramento
+- Categoria
+
+---
+
+## Mercados de Preço (`price_5min`)
+
+Mercados automatizados que rastreiam o preço de ativos em tempo real. A resolução é determinada automaticamente por **oráculos de preço** sem intervenção humana.
+
+**Características:**
+- Criados automaticamente pelo sistema
+- Baseados em ativos suportados (BTC, ETH, SOL, etc.)
+- Resolução automática ao final do período
+- Fontes de preço: Chainlink e CryptoCompare
+
+**Como funciona:**
+
+<Steps>
+  <Step title="Mercado criado">
+    O sistema cria um mercado com a pergunta: *"O preço do BTC vai estar acima de $X em 5 minutos?"*
+  </Step>
+  <Step title="Snapshot inicial">
+    O preço do ativo é registrado no momento da abertura do mercado.
+  </Step>
+  <Step title="Negociação">
+    Usuários compram tokens SIM ou NÃO durante a janela de 5 minutos.
+  </Step>
+  <Step title="Snapshot final">
+    Ao encerrar, o oráculo consulta o preço atual do ativo.
+  </Step>
+  <Step title="Resolução automática">
+    Se o preço final for superior ao preço de referência → SIM vence. Caso contrário → NÃO vence.
+  </Step>
+</Steps>
+
+**Fontes de preço:**
+
+| Fonte | Ativos |
+|-------|--------|
+| **Chainlink** | BTC, ETH, SOL, BNB, e outros ativos com feed on-chain |
+| **CryptoCompare** | Ativos com dados de mercado via API |
+
+---
+
+## Comparação
+
+| | Padrão | Preço (5min) |
+|---|---|---|
+| **Criador** | Usuário | Sistema |
+| **Duração** | Dias/semanas/meses | 5 minutos |
+| **Resolução** | Manual (admin) | Automática (oráculo) |
+| **Tipo de evento** | Qualquer binário | Preço de ativo |
+| **Garantia para criar** | 2 USDC | Não aplicável |
+| **Risco de ambiguidade** | Possível | Nenhum (dados objetivos) |
+
+---
+
+## Mercados cancelados
+
+Um mercado pode ser cancelado (sem resolução de vencedor) em casos como:
+
+- Evento não ocorreu por razões externas (ex: jogo cancelado por chuva)
+- Critérios de resolução inválidos ou impossíveis de verificar
+- Violação das diretrizes da plataforma
+
+Quando um mercado é cancelado, **todas as posições são devolvidas** aos usuários proporcionalmente ao valor investido.

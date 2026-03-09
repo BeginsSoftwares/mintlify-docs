@@ -1,0 +1,107 @@
+---
+title: Resolução e Liquidação
+description: Como os mercados são resolvidos e como os payouts são distribuídos.
+---
+
+## O que é resolução
+
+Resolução é o processo de determinar oficialmente o resultado de um mercado (SIM ou NÃO) após o encerramento. Uma vez resolvido, não há reversão.
+
+## Tipos de resolução
+
+### Resolução Manual
+
+Para mercados do tipo `standard`, um administrador do Oraculo verifica o resultado com base em fontes públicas e resolve o mercado manualmente.
+
+**Processo:**
+
+<Steps>
+  <Step title="Mercado encerra">
+    A data de encerramento chega. Nenhuma nova ordem é aceita.
+  </Step>
+  <Step title="Verificação do resultado">
+    A equipe Oraculo verifica o resultado com base nos critérios definidos na descrição do mercado, usando as fontes públicas indicadas.
+  </Step>
+  <Step title="Resolução on-chain">
+    Um admin executa a transação `resolveMarket` no smart contract da Solana, registrando o vencedor (SIM ou NÃO) de forma imutável.
+  </Step>
+  <Step title="Distribuição de payouts">
+    O sistema calcula e distribui os payouts para todos os vencedores automaticamente.
+  </Step>
+</Steps>
+
+### Resolução Automática (Mercados de Preço)
+
+Para mercados do tipo `price_5min`, o resultado é determinado automaticamente por oráculos de preço.
+
+- Nenhuma intervenção humana é necessária
+- O resultado é objetivo e verificável on-chain
+- Payouts são processados imediatamente após o encerramento
+
+---
+
+## Como o payout é calculado
+
+Quando o resultado é determinado:
+
+- Tokens do lado **vencedor** valem **1 USDC** cada
+- Tokens do lado **perdedor** valem **0 USDC**
+
+**Exemplo:**
+
+> Você comprou 100 tokens SIM a um preço médio de 0,60 USDC, investindo 60 USDC.
+>
+> - Se **SIM vencer**: recebe 100 × 1 = **100 USDC** (lucro de 40 USDC)
+> - Se **NÃO vencer**: recebe 0 USDC (perda de 60 USDC)
+
+O payout é proporcional à quantidade de tokens que você possui, independentemente do preço que pagou por eles.
+
+### Fórmula
+
+```
+Payout = quantidade_de_tokens_vencedores × 1 USDC
+Lucro/Prejuízo = Payout - USDC investido
+```
+
+---
+
+## Liquidação on-chain
+
+Após a resolução, o sistema processa os payouts em lotes via smart contract na Solana:
+
+1. O sistema lê a posição de cada usuário vencedor no banco de dados
+2. Agrega os pagamentos em uma transação batch
+3. Executa o smart contract que transfere USDC para cada carteira vencedora
+4. Atualiza os saldos no banco de dados
+
+O processo é transparente — cada payout gera uma transação verificável na blockchain Solana.
+
+---
+
+## Mercados cancelados vs. resolvidos
+
+| | Cancelado | Resolvido |
+|---|---|---|
+| **Causa** | Evento não ocorreu, critérios inválidos | Resultado determinado |
+| **Devolução** | Valor investido devolvido proporcionalmente | Payout para vencedores |
+| **Perdedores** | Recebem de volta o valor investido | Perdem o valor investido |
+
+<Info>
+  Em caso de cancelamento, o USDC investido em ordens executadas é devolvido para todos os participantes. USDC em ordens abertas (não executadas) já está disponível no saldo da conta.
+</Info>
+
+---
+
+## Contestação de resultado
+
+Se você acredita que um mercado foi resolvido incorretamente, entre em contato com o suporte do Oraculo com:
+
+- ID do mercado
+- Evidência do resultado correto
+- Fonte pública verificável
+
+A equipe revisará o caso. Resoluções com evidências claras e objetivas podem ser corrigidas antes da distribuição de payouts.
+
+<Warning>
+  Após a distribuição dos payouts on-chain, a resolução é imutável e não pode ser revertida.
+</Warning>
