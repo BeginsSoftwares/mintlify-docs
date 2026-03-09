@@ -71,6 +71,19 @@
           "carteira/autocustodia",
           "carteira/solana-e-usdc"
         ]
+      },
+      {
+        "group": "Guias",
+        "pages": [
+          "guias/o-que-e-mercado-de-previsao",
+          "guias/diferenca-casa-de-apostas",
+          "guias/estrategias-para-ganhar",
+          "guias/vale-a-pena",
+          "guias/previsao-copa-do-mundo",
+          "guias/previsao-eleicoes-2026",
+          "guias/previsao-brasileirao",
+          "guias/previsao-bbb"
+        ]
       }
     ]
   },
