@@ -1,13 +1,13 @@
 ---
 title: Autocustódia
-description: Como o Oraculo protege seus fundos com uma carteira não-custodial.
+description: Como o Oraculo protege seus fundos com uma carteira não custodial.
 ---
 
 ## O modelo de custódia do Oraculo
 
-O Oraculo opera com um modelo **não-custodial**: seus USDC ficam em sua própria carteira Solana, não em uma conta da plataforma. A diferença é fundamental:
+O Oraculo opera com um modelo **não custodial**: seus USDC ficam em sua própria carteira Solana, não em uma conta da plataforma. A diferença é fundamental:
 
-| | Custodial (tradicional) | Oraculo (não-custodial) |
+| | Custodial (tradicional) | Oraculo (não custodial) |
 |---|---|---|
 | **Quem controla os fundos** | A plataforma | Você |
 | **Risco de falência da plataforma** | Perde o dinheiro | Fundos na blockchain são seus |
@@ -21,7 +21,7 @@ Quando você cria uma conta no Oraculo:
 1. Uma **chave privada Solana** é gerada para você
 2. A chave é armazenada de forma segura usando **Privy** — infraestrutura especializada em custódia de chaves privadas
 3. Você recebe um **endereço público** (ex: `8xKj...dQ4f`) que representa sua carteira on-chain
-4. A chave privada **nunca aparece** na interface do app — nem você nem a Oraculo a vê em texto puro
+4. A chave privada **nunca aparece** na interface do app — nem você nem a Oraculo a veem em texto puro
 
 Essa arquitetura se chama **MPC (Multi-Party Computation)** — sua chave é fragmentada de forma que nenhuma parte isolada consegue acessar os fundos sem a autenticação legítima do usuário.
 
