@@ -19,13 +19,13 @@
     "links": [
       {
         "label": "App",
-        "href": "https://oraculo.gg"
+        "href": "https://app.oraculo.fun"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Começar a Operar",
-      "href": "https://oraculo.gg"
+      "href": "https://app.oraculo.fun"
     }
   },
   "navigation": {
