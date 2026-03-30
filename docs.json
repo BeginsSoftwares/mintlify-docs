@@ -73,6 +73,12 @@
         ]
       },
       {
+        "group": "FAQ",
+        "pages": [
+          "faq"
+        ]
+      },
+      {
         "group": "Guias",
         "pages": [
           "guias/o-que-e-mercado-de-previsao",
@@ -96,5 +102,10 @@
   },
   "feedback": {
     "thumbsRating": true
-  }
+  },
+  "scripts": [
+    {
+      "src": "/crisp-init.js"
+    }
+  ]
 }

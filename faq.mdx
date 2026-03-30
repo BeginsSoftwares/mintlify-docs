@@ -1,0 +1,147 @@
+---
+title: Perguntas Frequentes (FAQ)
+description: Tudo que você precisa saber sobre o Oraculo — mercados, depósitos, saques, trading e segurança.
+---
+
+## Geral
+
+<AccordionGroup>
+  <Accordion title="O que é o Oraculo?">
+    O Oraculo é uma plataforma de mercados preditivos descentralizada construída na Solana. Você pode fazer previsões sobre eventos futuros comprando e vendendo tokens que representam diferentes resultados.
+  </Accordion>
+
+  <Accordion title="Como funciona o sistema de mercados preditivos?">
+    Cada mercado representa uma pergunta sobre um evento futuro. Você compra tokens **SIM** ou **NÃO** para apostar em diferentes resultados.
+
+    - Se sua previsão estiver correta quando o mercado for resolvido → cada token vale **$1**
+    - Se estiver errada → cada token vale **$0**
+
+    O preço dos tokens oscila conforme a demanda, refletindo a probabilidade percebida pelo mercado.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Conta
+
+<AccordionGroup>
+  <Accordion title="Como criar uma conta?">
+    Você pode criar uma conta usando seu e-mail ou conectando-se com o Google. O processo é rápido e usa autenticação via Clerk — sem senhas para lembrar.
+  </Accordion>
+
+  <Accordion title="Preciso verificar meu e-mail?">
+    Recomendamos fortemente. A verificação garante a segurança da sua conta e permite que você receba notificações importantes sobre mercados e transações.
+  </Accordion>
+
+  <Accordion title="O que fazer se perder acesso à conta?">
+    Entre em contato com o suporte pelo chat. Recomendamos também ativar autenticação de dois fatores para evitar esse cenário.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Depósitos
+
+<AccordionGroup>
+  <Accordion title="Como depositar fundos?">
+    Acesse a página de depósito pelo botão **Depositar** no seu perfil. Você paga via PIX — o valor em reais é convertido automaticamente para USDC e creditado na sua conta em alguns minutos após a confirmação do pagamento.
+  </Accordion>
+
+  <Accordion title="Quanto tempo leva para o depósito ser confirmado?">
+    Normalmente menos de 5 minutos após a confirmação do PIX. O saldo é atualizado em tempo real no app.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Saques
+
+<AccordionGroup>
+  <Accordion title="Como sacar meus fundos?">
+    Acesse **Carteira → Sacar**. Informe sua chave PIX e o valor em USDC que deseja sacar. O sistema calcula a cotação USDC → BRL em tempo real e exibe o valor líquido que você vai receber. Após confirmar, o valor é enviado direto para sua chave PIX.
+  </Accordion>
+
+  <Accordion title="Quanto tempo leva para o saque cair?">
+    Em geral, entre **10 e 30 minutos**. O status é atualizado em tempo real no app: de *Pendente* até *Concluído*. Se demorar mais que 30 minutos, entre em contato com o suporte.
+  </Accordion>
+
+  <Accordion title="Existe valor mínimo ou máximo para saque?">
+    Sim. O **mínimo** é equivalente a R$ 20,00 em USDC. O saldo disponível é o **máximo** por operação. Esses valores são exibidos na tela antes de você confirmar.
+  </Accordion>
+
+  <Accordion title="Existe alguma taxa para saque?">
+    Sim. Há uma taxa da plataforma (1% sobre o valor em USDC) mais um spread de conversão USDC → BRL do provedor. O valor líquido exibido antes da confirmação já desconta todas as taxas.
+  </Accordion>
+
+  <Accordion title="Posso sacar para a conta de outra pessoa?">
+    Não. Por segurança, saques só podem ser enviados para a chave PIX cadastrada na **sua própria conta** Oraculo.
+  </Accordion>
+
+  <Accordion title="O que acontece se o saque falhar?">
+    O USDC é devolvido automaticamente ao seu saldo disponível. Você receberá uma notificação com o motivo da falha.
+  </Accordion>
+
+  <Accordion title="Posso cancelar um saque após confirmar?">
+    Não. O processamento começa imediatamente após a confirmação. Verifique todos os dados antes de confirmar.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Trading
+
+<AccordionGroup>
+  <Accordion title="Como compro tokens em um mercado?">
+    Navegue até o mercado desejado, escolha **SIM** ou **NÃO**, informe o valor em USDC e confirme a ordem. Sua posição aparece imediatamente no portfólio.
+  </Accordion>
+
+  <Accordion title="Posso vender meus tokens antes do mercado ser resolvido?">
+    Sim! Você pode vender a qualquer momento antes da resolução. O preço será o valor de mercado no momento da venda.
+  </Accordion>
+
+  <Accordion title="Como são calculados os preços dos tokens?">
+    Por oferta e demanda. Quanto mais pessoas compram **SIM**, mais caro fica o SIM e mais barato o NÃO — e vice-versa. O preço representa a probabilidade implícita que o mercado atribui a cada resultado.
+  </Accordion>
+
+  <Accordion title="O que é o portfólio total?">
+    É o valor atual de todas as suas posições ativas, calculado com base nos preços correntes dos tokens.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Mercados
+
+<AccordionGroup>
+  <Accordion title="Como são criados novos mercados?">
+    Qualquer usuário pode criar um mercado sobre qualquer evento futuro que possa ser verificado objetivamente. Acesse **Criar Mercado** no app.
+  </Accordion>
+
+  <Accordion title="Como um mercado é resolvido?">
+    Quando o evento ocorre ou a data limite é atingida, um oráculo ou administrador resolve o mercado. Os tokens do lado vencedor valem **$1** cada; os do lado perdedor valem **$0**.
+  </Accordion>
+
+  <Accordion title="O que são os mercados de preço de 5 minutos?">
+    São mercados automáticos criados a cada 5 minutos que perguntam se o preço do BTC (ou outro ativo) vai **subir ou descer** no intervalo. O preço de resolução vem do feed Chainlink, garantindo imparcialidade.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Segurança
+
+<AccordionGroup>
+  <Accordion title="Minha carteira é segura?">
+    Sim. Cada usuário recebe uma carteira Solana dedicada, custodiada com segurança. Todas as transações são registradas na blockchain e verificáveis publicamente.
+  </Accordion>
+
+  <Accordion title="O Oraculo tem acesso aos meus fundos?">
+    Os contratos inteligentes na Solana controlam as regras dos mercados. O Oraculo não pode mover seus fundos arbitrariamente — apenas as operações que você confirma são executadas.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+<Card title="Não encontrou o que procurava?" icon="message-circle" href="https://app.oraculo.fun/support">
+  Fale com o nosso suporte — geralmente respondemos em menos de 1 hora.
+</Card>
