@@ -91,6 +91,13 @@
           "guias/previsao-bbb",
           "guias/nao-somos-bet"
         ]
+      },
+      {
+        "group": "Legal",
+        "pages": [
+          "termos",
+          "privacidade"
+        ]
       }
     ]
   },
